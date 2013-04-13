@@ -38,16 +38,31 @@ var StateDistribution = function(row){
 	this.row = row;
 };
 
-var transitionMatrix = new TransitionProbabilityMatrix([
+var test = function(){
+
+	var transitionMatrix = new TransitionProbabilityMatrix([
 		0.5,0.1,0.4,
 		0.1,0.6,0.3,
 		0.8,0.1,0.1
 	]);
-var distribution = new StateDistribution([0,1,0]);
-var state = 0;
+	
+	var distribution = new StateDistribution([0,1,0]);
+	var state = 0;
 
-if( process && process.argv[2] == 'test' )
-setInterval(function(){
-	distribution = transitionMatrix.run( distribution );
-	console.log( distribution );
-},1000);
+	setInterval(function(){
+		distribution = transitionMatrix.run( distribution );
+		console.log( distribution );
+	},1000);
+
+}
+
+
+if( process && process.argv[2] == 'test' ){
+	test();
+}
+
+if( module && module.exports ){
+	module.exports.TransitionProbabilityMatrix = TransitionProbabilityMatrix;
+	module.exports.StateDistribution = StateDistribution;
+}
+
