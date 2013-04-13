@@ -7,8 +7,8 @@ var TransitionProbabilityMatrix = function(cells){
 	reversedCells = cells.map(function(e,i,a){ return a[ Math.floor( i/width ) + width * (i%width) ] });
 
 	this.run = function(distribution){
-
-		if( distribution.row.length !== width ) throw new Error('distribution length must be equal to matrix width');
+		if( ! ( distribution instanceof StateDistribution ) ) throw new Error('Distribution argument must be of class StateDistribution');
+		if( distribution.row.length !== width ) throw new Error('Distribution length must be equal to matrix width');
 
 		return new StateDistribution( distribution.row.map(function(e,i,row){
 			var sum=0;
@@ -34,7 +34,7 @@ var TransitionProbabilityMatrix = function(cells){
 };
 
 var StateDistribution = function(row){
-	if( ! row instanceof Array ) throw new Error('expecting array as first argument');
+	if( ! ( row instanceof Array ) ) throw new Error('expecting array as first argument');
 	this.row = row;
 };
 

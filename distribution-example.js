@@ -11,8 +11,5 @@ var distribution = new markovchain.StateDistribution([0,1,0]);
 setInterval(function(){
 	distribution = transitionMatrix.run( distribution );
 	console.log("distribution =",distribution.row );
-	console.log("state =",state);
-	state = transitionMatrix.transition(state);
-
 },1000);
 
